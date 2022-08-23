@@ -1,0 +1,24 @@
+{
+  "name": "radosgw-admin-exporter",
+  "version": "1.0.0",
+  "description": "A Prometheus Exporter that use Ceph radosgw admin API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jordan886/radosgw-admin-exporter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jordan886/radosgw-admin-exporter/issues"
+  },
+  "homepage": "https://github.com/Jordan886/radosgw-admin-exporter#readme",
+  "dependencies": {
+    "aws4-axios": "^2.4.9",
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.1"
+  }
+}
