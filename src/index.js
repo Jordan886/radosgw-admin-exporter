@@ -1,12 +1,18 @@
 // if present load config from .env file
 require('dotenv').config()
-const { api } = require('./api')
+const express = require('express')
+const { config } = require('./config')
+const { getBucketStats } = require('./functions')
 
 const start = async function start() {
-  const buckets = await api.listBuckets()
-  console.debug(buckets)
-  const stats = await api.bucketStats('1827e484')
-  console.debug(stats.usage)
+  const app = express()
+  app.get('/metrics', async (req, res) => {
+    const stats = await getBucketStats(config.filters.filter_type(), config.filters.filter_list())
+    res.set('Content-Type', 'text/plain')
+    res.send(stats)
+  })
+  app.listen(config.webserver.port, () => {
+  })
 }
 
 start()

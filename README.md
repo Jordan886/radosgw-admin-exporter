@@ -20,12 +20,14 @@ docker run -d -p 9501:9501 jordan886/radosgw-admin-exporter
 ```
 ### Variables ###
 
-| Parameter                     | Example                | Description  |	
+
+
+| Variable                      | Example                | Description  |	
 | :-----------------------------|:----------------------:|:-------------|
-| --url **(required)** 	        |	s3.scalablestorage.it  | url where your s3 storage reside |
-| --region **(required)** 	    |	it-mi1                 | the region |
-| --access-key **(required)**   | user                   | the s3 user access key |
-| --secret-key **(required)** 	|	secret                 | the user secret key |
+| url **(required)** 	          |	s3.scalablestorage.it  | url where your s3 storage reside (only https with a valid certificate) |
+|  **(required)** 	            |	it-mi1                 | the region |
+| access-key **(required)**     | user                   | the s3 user access key |
+| secret-key **(required)** 	  |	secret                 | the user secret key |
 
 
 ## Contributing

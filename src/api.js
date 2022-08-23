@@ -6,44 +6,58 @@ const { config } = require('./config')
 const client = axios.create()
 const interceptor = aws4Interceptor(
   {
-  region: config.s3api.region,
-  service: 's3',
+    region: config.s3api.region,
+    service: 's3',
   },
   {
-  accessKeyId: config.s3api.access_key,
-  secretAccessKey: config.s3api.secret_key
-  }
+    accessKeyId: config.s3api.access_key,
+    secretAccessKey: config.s3api.secret_key,
+  },
 )
 client.interceptors.request.use(interceptor)
 
 const api = {
-  listBuckets: async function listBuckets(){
-    const url = config.s3api.url
+  listAllBuckets: async function listBuckets() {
+    const { url } = config.s3api
     const path = '/admin/metadata/bucket'
     const params = '?format=json'
-    req = url + path + params
+    const req = url + path + params
     let res
     try {
       res = await client.get(req)
       return res.data
-    }catch(error){
-      throw new Error(error)
+    } catch (error) {
+      return null
     }
   },
-  bucketStats: async function bucketStats(bucket){
-    const url = config.s3api.url
+  listBucketPerUser: async function listBucketPerUser(user) {
+    const { url } = config.s3api
     const path = '/admin/bucket'
-    const params = `?bucket=${bucket}&stats=True&format=json`
-    req = url + path + params
+    let params
+    // if user specified list only buckets belonging to this user
+    if (user) params = `?uid=${user}`
+    const req = url + path + params
     let res
     try {
       res = await client.get(req)
       return res.data
-    }catch(error){
-      throw new Error(error)
+    } catch (error) {
+      return null
     }
-
-  }
+  },
+  bucketStats: async function bucketStats(bucket) {
+    const { url } = config.s3api
+    const path = '/admin/bucket'
+    const params = `?bucket=${bucket}&stats=True&format=json`
+    const req = url + path + params
+    let res
+    try {
+      res = await client.get(req)
+      return res.data
+    } catch (error) {
+      return null
+    }
+  },
 }
 
 module.exports = { api }
