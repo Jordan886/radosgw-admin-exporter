@@ -23,7 +23,7 @@ const config = {
   },
   webserver: {
     port: process.env.EXPORTER_PORT || 9501,
-    metrics_prefix: `${process.env.EXPORTER_METRICS_PREFIX}_` || null,
+    metrics_prefix: process.env.EXPORTER_METRICS_PREFIX || null,
   },
 }
 

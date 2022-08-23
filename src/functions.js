@@ -43,13 +43,14 @@ const getBucketStats = async function getBucketsStats(filter_type, filter_list) 
 
   // prepare output as Prometheus Exporter
   let final_result = ''
-  const prefix = config.webserver.metrics_prefix
+  const prefix = config.webserver.metrics_prefix ? `${config.webserver.metrics_prefix}_` : null
+
   stats.map((item) => {
     const labels = JSON.stringify(item.labels)
-    final_result += `${prefix}size${labels} ${item.stats.size}\n`
-    final_result += `${prefix}size_actual${labels} ${item.stats.size_actual}\n`
-    final_result += `${prefix}size_utilized${labels} ${item.stats.size_utilized}\n`
-    final_result += `${prefix}num_objects${labels} ${item.stats.num_objects}\n`
+    final_result += `${prefix || ''}size${labels} ${item.stats.size}\n`
+    final_result += `${prefix || ''}size_actual${labels} ${item.stats.size_actual}\n`
+    final_result += `${prefix || ''}size_utilized${labels} ${item.stats.size_utilized}\n`
+    final_result += `${prefix || ''}num_objects${labels} ${item.stats.num_objects}\n`
     return null
   })
   return final_result
