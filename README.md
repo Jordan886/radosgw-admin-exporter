@@ -19,7 +19,8 @@ Example:
 docker run -d -p 9501:9501 -e S3_URL=https://s3.url -e S3_REGION=it jordan886/radosgw-admin-exporter
 ```
 
-you can manage the environment variables using a .env file
+you can also manage the environment variables using a .env file.      
+
 Example:
 ```
 docker run -d -p 9501:9501 --env-file .env jordan886/radosgw-admin-exporter
@@ -46,11 +47,11 @@ this can be useful if you don't wont to overload the API for large clusters
 *FILTER_TYPE* can be type user or bucket, the user type will expose all buckets owned by the specified user(s)
 *FILTER_LIST* is a comma separated list of users or buckets, metrics will only be exposed for those objects
 
-### Prefix
-if you manage a large Prometheus cluster you can add a custom prefix to easily find them inside Prometheus
-**Example** 
-EXPORTER_METRICS_PREFIX=s3 will change metrics num_objects to s3_num_objects
-**You don't need to specify _ it's automatically appended**
+### Prefix   
+if you manage a large Prometheus cluster you can add a custom prefix to easily find them inside Prometheus.     
+**Example**          
+EXPORTER_METRICS_PREFIX=s3 will change metrics num_objects to s3_num_objects.  
+**You don't need to specify '_' it's automatically appended**       
 
 ## Contributing
 
