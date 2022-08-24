@@ -46,7 +46,7 @@ const getBucketStats = async function getBucketsStats(filter_type, filter_list) 
   const prefix = config.webserver.metrics_prefix ? `${config.webserver.metrics_prefix}_` : null
 
   stats.map((item) => {
-    const labels = JSON.stringify(item.labels)
+    const labels = `{bucket="${item.labels.bucket}",owner="${item.labels.owner}"}`
     final_result += `${prefix || ''}size${labels} ${item.stats.size || 0}\n`
     final_result += `${prefix || ''}size_actual${labels} ${item.stats.size_actual || 0}\n`
     final_result += `${prefix || ''}size_utilized${labels} ${item.stats.size_utilized || 0}\n`
