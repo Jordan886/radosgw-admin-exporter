@@ -47,10 +47,10 @@ const getBucketStats = async function getBucketsStats(filter_type, filter_list) 
 
   stats.map((item) => {
     const labels = JSON.stringify(item.labels)
-    final_result += `${prefix || ''}size${labels} ${item.stats.size}\n`
-    final_result += `${prefix || ''}size_actual${labels} ${item.stats.size_actual}\n`
-    final_result += `${prefix || ''}size_utilized${labels} ${item.stats.size_utilized}\n`
-    final_result += `${prefix || ''}num_objects${labels} ${item.stats.num_objects}\n`
+    final_result += `${prefix || ''}size${labels} ${item.stats.size || 0}\n`
+    final_result += `${prefix || ''}size_actual${labels} ${item.stats.size_actual || 0}\n`
+    final_result += `${prefix || ''}size_utilized${labels} ${item.stats.size_utilized || 0}\n`
+    final_result += `${prefix || ''}num_objects${labels} ${item.stats.num_objects || 0}\n`
     return null
   })
   return final_result
