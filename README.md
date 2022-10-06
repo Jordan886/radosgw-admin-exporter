@@ -39,6 +39,7 @@ docker run -d -p 9501:9501 --env-file .env jordan886/radosgw-admin-exporter
 | FILTER_LIST	                  |	bucket01,bucket02,bucketN        | see filters section |
 | EXPORTER_PORT 	              |	9501                             | if you need to override the default port |
 | EXPORTER_METRICS_PREFIX  	    |	s3                               | see prefix section |
+| EXPORTER_LOG_LEVEL      	    |	debug                            | the exporter log, level, info by default |
 
 ### Filters
 

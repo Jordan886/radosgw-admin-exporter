@@ -25,6 +25,7 @@ const config = {
     port: process.env.EXPORTER_PORT || 9501,
     metrics_prefix: process.env.EXPORTER_METRICS_PREFIX || null,
   },
+  log_level: process.env.EXPORTER_LOG_LEVEL || 'info',
 }
 
 module.exports = { config }

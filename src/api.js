@@ -1,6 +1,7 @@
 const axios = require('axios')
 const { aws4Interceptor } = require('aws4-axios')
 const { config } = require('./config')
+const logger = require('./logger')
 
 // init axios with SignatureV4
 const client = axios.create()
@@ -25,8 +26,10 @@ const api = {
     let res
     try {
       res = await client.get(req)
+      logger.debug('listBuckets result: %o', res)
       return res.data
     } catch (error) {
+      logger.error(`listBuckets returned the following error: ${error}`)
       return null
     }
   },
@@ -40,8 +43,10 @@ const api = {
     let res
     try {
       res = await client.get(req)
+      logger.debug('listBucketPerUser result: %o', res)
       return res.data
     } catch (error) {
+      logger.error(`listBucketPerUser returned the following error: ${error}`)
       return null
     }
   },
@@ -53,8 +58,10 @@ const api = {
     let res
     try {
       res = await client.get(req)
+      logger.debug('bucketStats result: %o', res)
       return res.data
     } catch (error) {
+      logger.error(`bucketStats returned the following error: ${error}`)
       return null
     }
   },
